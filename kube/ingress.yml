@@ -1,0 +1,21 @@
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    ingress.kubernetes.io/secure-backends: "true"
+  name: dq-aws-show-tell-ingress
+spec:
+  rules:
+  - host: dq-aws-show-tell.notprod.homeoffice.gov.uk
+    http:
+      paths:
+      - backend:
+          serviceName: dq-aws-show-tell-service
+          servicePort: https
+        path: /
+  tls:
+  - hosts:
+    - dq-aws-show-tell.notprod.homeoffice.gov.uk
+    - www.dq-aws-show-tell.notprod.homeoffice.gov.uk
+    secretName: external-tls

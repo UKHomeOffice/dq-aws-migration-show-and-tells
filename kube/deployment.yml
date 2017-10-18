@@ -1,0 +1,36 @@
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: dq-aws-show-tell
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        name: dq-aws-show-tell
+    spec:
+      containers:
+      - name: dq-aws-show-tell
+        image: quay.io/ukhomeofficedigital/dq-aws-migration-show-and-tells:{{.DRONE_COMMIT_SHA}}
+        ports:
+          - name: http
+            containerPort: 9000
+        resources:
+          limits:
+            cpu: 250m
+            memory: 256Mi
+      - name: proxy
+        image: quay.io/ukhomeofficedigital/nginx-proxy:v1.6.1
+        env:
+          - name: PROXY_SERVICE_HOST
+            value: '127.0.0.1'
+          - name: PROXY_SERVICE_PORT
+            value: '9000'
+          - name: LOG_FORMAT_NAME
+            value: json
+          - name: NAXSI_USE_DEFAULT_RULES
+            value: 'FALSE'
+        ports:
+          - name: https
+            containerPort: 443

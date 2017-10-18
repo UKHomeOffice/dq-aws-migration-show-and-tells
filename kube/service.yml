@@ -1,0 +1,14 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    name: dq-aws-show-tell-service
+  name: dq-aws-show-tell-service
+spec:
+  ports:
+  - name: https
+    port: 443
+    targetPort: https
+  selector:
+    name: dq-aws-show-tell

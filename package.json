@@ -1,0 +1,21 @@
+{
+  "name": "dq-aws-migration-show-and-tells",
+  "version": "1.0.0",
+  "description": "This repo contains the slides for dq-aws-migration-show-and-tells, produced with prez/revealjs.",
+  "main": "index.js",
+  "scripts": {
+    "start": "prez --watch --serve",
+    "build": "prez --print --no-open-browser --print-notes"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git-github:UKHomeOffice/dq-aws-migration-show-and-tells"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "phantomjs-prebuilt": "^2.1.13",
+    "prez": "chrisns/prez#973a69d524ab24783e78f411237bbf2c1fcd04d9"
+  }
+}
